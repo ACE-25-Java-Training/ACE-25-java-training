@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class GeneratingNumberList {
     public static StringBuilder generateList(){
         StringBuilder numberList = new StringBuilder();
-        for(int num = 1;num <= 25;num++){
-            String convertedNum = Integer.toString(num);
-            numberList.append(convertedNum + ",");
+        for(byte num = 1;num <= 25;num++){
+            String convertedByte = Byte.toString(num);
+            numberList.append(convertedByte).append(",");
         }
         numberList.deleteCharAt(numberList.length() - 1);
         return numberList;
@@ -13,16 +13,16 @@ public class GeneratingNumberList {
 
     public static StringBuffer replaceString(StringBuilder numberList){
         StringBuffer str = new StringBuffer(numberList);
-        int startIndex = 0, endIndex = 0;
+        byte startIndex = 0, endIndex = 0;
         StringBuilder temp = new StringBuilder();
-        for(int index = 0;index < str.length();index++){
+        for(byte index = 0;index < str.length();index++){
             char ch = str.charAt(index);
             if(ch == ','){ // slicing the individual numbers from the list
                 endIndex = index;
-                int parsedInt = Integer.parseInt(temp.toString());
-                if(parsedInt % 5 == 0){
+                byte parsedByte = Byte.parseByte(temp.toString());
+                if(parsedByte % 5 == 0){
                     String toReplace = "";
-                    switch (parsedInt){
+                    switch (parsedByte){
                         case 5:
                             toReplace = "five";
                             break;
@@ -40,13 +40,14 @@ public class GeneratingNumberList {
                     index += (toReplace.length() - temp.length()); // recalculating the index since the buffer has been updated
                 }
                 temp = new StringBuilder(); // clearing the stored number string inside the stringbuilder
-                startIndex = index + 1;
+                startIndex = (byte) (index + 1);
             }else{
                 temp.append(ch);
             }
         }
 
         //handling for the last number (i.e) 25 since there's no comma
+        // (can do checks here if the last number is not guaranteed to be a multiple of 5)
         str.replace(startIndex, str.length(), "twentyfive");
         return str;
     }

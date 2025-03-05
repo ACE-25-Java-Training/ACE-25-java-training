@@ -2,11 +2,11 @@ import java.util.Scanner;
 public class NumberGuessing {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int randomNum = (int)(Math.random() * 100);
+        byte randomNum = (byte)(Math.random() * 100);
         boolean flag = false;
         do{
             System.out.print("Enter the number: ");
-            int userInput = sc.nextInt();
+            byte userInput = sc.nextByte();
             if(userInput == randomNum){
                 flag = true;
             }else if (userInput < randomNum) {
