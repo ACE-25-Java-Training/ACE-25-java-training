@@ -9,7 +9,8 @@ public class PrimeNumber {
             System.out.println("Not Prime");
             return;
         }
-        for(int i = 3;i <= Math.sqrt(num);i += 2){
+        int maxNumToCheck = (int)Math.sqrt(num);
+        for(int i = 3;i <= maxNumToCheck;i += 2){
             if(num % i == 0){
                 System.out.println("Not Prime");
                 return;
