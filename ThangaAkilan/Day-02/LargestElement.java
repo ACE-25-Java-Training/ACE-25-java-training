@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+
+/**
+ * The class is to find the largest number in an array
+ *
+ */
 public class LargestElement {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

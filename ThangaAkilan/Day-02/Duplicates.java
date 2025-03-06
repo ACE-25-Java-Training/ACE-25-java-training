@@ -1,6 +1,12 @@
 import java.util.HashSet;
 import java.util.Scanner;
 
+/**
+ * The class is used to remove the duplicates from the string
+ * Only the first occurence is allowed to exist
+ *
+ * @author thangaakilanv
+ */
 public class Duplicates {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -8,11 +14,11 @@ public class Duplicates {
         HashSet strSet = new HashSet();
         StringBuilder resultStr = new StringBuilder(sc.nextLine());
 
-//        for(char letter: inputString.toCharArray()){
-//            if(resultStr.indexOf(letter+"")==-1){
-//                resultStr.append(letter);
-//            }
-//        }
+        /*
+        Every letter is checked for presence in the set
+        If it exists then the letter is removed from the string
+        else the letter is added to the set
+         */
         for(int i=0;i<resultStr.length();i++){
             if(strSet.contains(resultStr.charAt(i))){
                 resultStr.replace(i,i+1,"");
@@ -22,7 +28,7 @@ public class Duplicates {
             }
         }
 
-
+        // Output the resultant string
         System.out.println(resultStr.toString());
 
     }
