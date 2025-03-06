@@ -1,16 +1,34 @@
-import java.util.Arrays;
-
+/**
+ * This class provides methods to generate a number list and replace the multiples of 5 with the actual word.
+ * @author Murugavel
+ */
 public class GeneratingNumberList {
+
+    /**
+       * Generates a list of numbers from 1 to 25.
+       * The number is converted to a string using the Byte.toString() method.
+       * The converted string is appended to a stringbuilder separated by comma operator.
+       * @return StringBuilder
+     */
     public static StringBuilder generateList(){
         StringBuilder numberList = new StringBuilder();
         for(byte num = 1;num <= 25;num++){
             String convertedByte = Byte.toString(num);
             numberList.append(convertedByte).append(",");
         }
-        numberList.deleteCharAt(numberList.length() - 1);
+        numberList.deleteCharAt(numberList.length() - 1); // removes the last character (",")
         return numberList;
     }
 
+    /**
+       * Replaces the numbers that are multiples of 5 with the actual word
+       * Slices the numbers that are separated by commas
+       * Converts the string to byte with the help of Byte.parseByte() method
+       * Stores the start and end index of the number
+       * Replaces the numbers to their actual word using the replace(startIndex, endIndex, string) method.
+       * @param numberList
+       * @return StringBuffer
+     */
     public static StringBuffer replaceString(StringBuilder numberList){
         StringBuffer str = new StringBuffer(numberList);
         byte startIndex = 0, endIndex = 0;
@@ -22,7 +40,7 @@ public class GeneratingNumberList {
                 byte parsedByte = Byte.parseByte(temp.toString());
                 if(parsedByte % 5 == 0){
                     String toReplace = "";
-                    switch (parsedByte){
+                    switch (parsedByte){ // to get the actual word the number
                         case 5:
                             toReplace = "five";
                             break;
