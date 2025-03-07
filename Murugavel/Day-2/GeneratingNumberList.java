@@ -16,64 +16,41 @@ public class GeneratingNumberList {
             String convertedByte = Byte.toString(num);
             numberList.append(convertedByte).append(",");
         }
-        numberList.deleteCharAt(numberList.length() - 1); // removes the last character (",")
+        numberList.setLength(numberList.length() - 1); // removes the last character (",")
         return numberList;
     }
 
     /**
        * Replaces the numbers that are multiples of 5 with the actual word
-       * Slices the numbers that are separated by commas
+       * Slices the numbers that are separated by commas into an array
        * Converts the string to byte with the help of Byte.parseByte() method
-       * Stores the start and end index of the number
-       * Replaces the numbers to their actual word using the replace(startIndex, endIndex, string) method.
+       * Replaces the numbers to their actual word using wordReplacements[].
        * @param numberList
-       * @return StringBuffer
+       * @return StringBuilder
      */
-    public static StringBuffer replaceString(StringBuilder numberList){
-        StringBuffer str = new StringBuffer(numberList);
-        byte startIndex = 0, endIndex = 0;
-        StringBuilder temp = new StringBuilder();
-        for(byte index = 0;index < str.length();index++){
-            char ch = str.charAt(index);
-            if(ch == ','){ // slicing the individual numbers from the list
-                endIndex = index;
-                byte parsedByte = Byte.parseByte(temp.toString());
-                if(parsedByte % 5 == 0){
-                    String toReplace = "";
-                    switch (parsedByte){ // to get the actual word the number
-                        case 5:
-                            toReplace = "five";
-                            break;
-                        case 10:
-                            toReplace = "ten";
-                            break;
-                        case 15:
-                            toReplace = "fifteen";
-                            break;
-                        case 20:
-                            toReplace = "twenty";
-                            break;
-                    }
-                    str.replace(startIndex, endIndex, toReplace);
-                    index += (toReplace.length() - temp.length()); // recalculating the index since the buffer has been updated
-                }
-                temp = new StringBuilder(); // clearing the stored number string inside the stringbuilder
-                startIndex = (byte) (index + 1);
+    public static StringBuilder replaceString(StringBuilder numberList){
+        StringBuilder resultStr = new StringBuilder();
+        // array to replace the number with the actual word
+        String[] wordReplacements = {"five", "ten", "fifteen", "twenty", "twentyfive"};
+        int replacementArrIndex = 0; // index to store the next replacement word
+        String[] splittedArr = numberList.toString().split(",");
+        for(String string : splittedArr){
+            byte convertedByte = Byte.parseByte(string);
+            if(convertedByte % 5 == 0){
+                resultStr.append(wordReplacements[replacementArrIndex++]);
             }else{
-                temp.append(ch);
+                resultStr.append(string);
             }
+            resultStr.append(",");
         }
-
-        //handling for the last number (i.e) 25 since there's no comma
-        // (can do checks here if the last number is not guaranteed to be a multiple of 5)
-        str.replace(startIndex, str.length(), "twentyfive");
-        return str;
+        resultStr.setLength(resultStr.length() - 1); // removing the last comma
+        return resultStr;
     }
 
     public static void main(String[] args) {
         StringBuilder numberList = generateList();
         System.out.println(numberList);
-        StringBuffer result = replaceString(numberList);
+        StringBuilder result = replaceString(numberList);
         System.out.println(result);
     }
 }
