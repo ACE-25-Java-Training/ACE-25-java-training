@@ -13,7 +13,7 @@ public class LargestElementInArray {
        * @return int
      */
     public static int findLargestElement(int[] arr){
-        int maxElement = 0;
+        int maxElement = arr[0];
         for(int num : arr){
             maxElement = Math.max(maxElement, num);
         }

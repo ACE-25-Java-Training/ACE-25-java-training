@@ -16,16 +16,16 @@ public class RemoveDuplicateCharacters {
         * @return String
      */
     public static String removeDuplicates(String userInput){
-        StringBuilder copiedStr = new StringBuilder();
+        StringBuilder resultStr = new StringBuilder();
         HashSet<Character> set = new HashSet<>(); // using hashset since the overall sc would be O(26) which is as good as O(1)
         for(int index = 0;index < userInput.length();index++){
             char ch = userInput.charAt(index);
             if(!set.contains(ch)){
                 set.add(ch);
-                copiedStr.append(ch);
+                resultStr.append(ch);
             }
         }
-        return copiedStr.toString();
+        return resultStr.toString();
     }
 
     public static void main(String[] args) {

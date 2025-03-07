@@ -32,7 +32,8 @@ public class PatternPrinting {
     /**
        * Prints the intended pattern from the string passed as an argument.
        * This method constructs the intended portion of the string with the help of stringbuilder.
-       * Uses the methods append() and deleteCharAt() to construct the string from the existing stringbuilder part.
+       * Uses the methods append() and setLength() to construct and destruct the string
+       * from the existing stringbuilder part.
        * @param userInput
      */
 
@@ -46,9 +47,11 @@ public class PatternPrinting {
             System.out.println(str);
         }
 //        Second half of the pattern
-        while (str.length() > 1){
-            str.deleteCharAt(str.length() - 1);
+        int builderStringLen = str.length();
+        while (builderStringLen > 1){
+            str.setLength(builderStringLen - 1);
             System.out.println(str);
+            builderStringLen--;
         }
     }
 
