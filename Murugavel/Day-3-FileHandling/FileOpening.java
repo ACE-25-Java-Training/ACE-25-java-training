@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
@@ -8,7 +9,7 @@ import java.util.logging.Logger;
  * @author Murugavel
  */
 public class FileOpening {
-    private static Logger logger = Logger.getLogger(FileOpening.class.getName());
+    private static final Logger logger = Logger.getLogger(FileOpening.class.getName());
     public static void main(String[] args) {
         try {
             for(int count = 0; count < 3; ++count) {
@@ -24,8 +25,8 @@ public class FileOpening {
                 while(br.ready()){
                     System.out.println(br.readLine());
                 }
-            } catch (Exception exception) {
-                logger.warning(exception.getMessage());
+            } catch (IOException exception) {
+                logger.warning("Error occurred while reading file: " + exception.getMessage());
             }
         }
 

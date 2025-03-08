@@ -8,11 +8,13 @@ import java.util.Scanner;
  */
 public class FilePathChecking {
 
-    /// Checks for the presence of file inside a file path passed as an argument.
-    /// Uses FileFilter Interface to filter out only the files if the file path is a directory.
-    /// Returns a boolean true if a file is found, else returns boolean false.
-    /// @param filePath
-    /// @return boolean
+    /**
+     * Checks for the presence of file inside a file path passed as an argument.
+     * Uses FileFilter Interface to filter out only the files if the file path is a directory.
+     * Returns a boolean true if a file is found, else returns boolean false.
+     * @param filePath
+     * @return boolean
+     */
     public static boolean checkForFileExistence(String filePath) {
         File file = new File(filePath);
         if (file.isFile()) {
@@ -40,6 +42,7 @@ public class FilePathChecking {
         } else {
             System.out.println("No file exists in the path");
         }
+        sc.close();
     }
 }
 
